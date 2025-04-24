@@ -8,6 +8,10 @@
 
 The `snyk code test` command tests for any known security issues using Static Code Analysis.
 
+For more information, see [Using Snyk Code from the CLI](https://docs.snyk.io/scan-applications/snyk-code/using-snyk-code-from-the-cli)
+
+For instructions on ignoring issues with `snyk code test` see [Excluding directories and files from the Snyk Code CLI test](https://docs.snyk.io/scan-applications/snyk-code/using-snyk-code-from-the-cli/excluding-directories-and-files-from-the-snyk-code-cli-test)
+
 ## Exit codes
 
 Possible exit codes and their meaning:
@@ -19,6 +23,8 @@ Possible exit codes and their meaning:
 
 ## Configure the Snyk CLI
 
+You can use environment variables to configure the Snyk CLI and set variables for connecting with the Snyk API; see [Configure the Snyk CLI](https://docs.snyk.io/features/snyk-cli/configure-the-snyk-cli)
+
 ## Debug
 
 Use the `-d` option to output the debug logs.
@@ -27,21 +33,25 @@ Use the `-d` option to output the debug logs.
 
 ### `--org=<ORG_ID>`
 
-Specify the `<ORG_ID>`to run Snyk commands tied to a specific Snyk Organization. The `<ORG_ID>` influences private test limits.
+Specify the `<ORG_ID>`to run Snyk commands tied to a specific organization. The `<ORG_ID>` influences private test limits.
 
-If you have multiple Organizations, you can set a default from the CLI using:
+If you have multiple organizations, you can set a default from the CLI using:
 
 `$ snyk config set org=<ORG_ID>`
 
-Set a default to ensure all newly tested projects are tested under your default Organization. If you need to override the default, use the `--org=<ORG_ID>` option.
+Set a default to ensure all newly tested projects are tested under your default organization. If you need to override the default, use the `--org=<ORG_ID>` option.
 
-Default: `<ORG_ID>` that is the current preferred Organization in your [Account settings](https://app.snyk.io/account)
+Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.snyk.io/account)
 
-Note that you can also use `--org=<orgslugname>`. The `ORG_ID` works in both the CLI and the API. The Organization slug name works in the CLI, but not in the API.
+Note that you can also use `--org=<orgslugname>`. The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
+
+For more information, see the article [How to select the organization to use in the CLI](https://docs.snyk.io/snyk-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
 
 ### `--report`
 
-Share results with the Snyk Web UI.
+**NEW** option: Share results with the Snyk Web UI.
+
+**Feature availability**: This feature is currently in Closed Beta. To obtain access, contact your Snyk account representative.
 
 This creates a project in your Snyk account with a snapshot of the current configuration issues or appends the snapshot to an existing project.
 
@@ -49,7 +59,7 @@ After using this option, log in to the Snyk website and view your projects to se
 
 Example: `$ snyk code test --report --project-name="PROJECT_NAME"`
 
-For more information, see [Publish CLI results](https://docs.snyk.io/scan-application-code/snyk-code/cli-for-snyk-code/publishing-cli-results-to-a-snyk-project-and-ignoring-cli-results#publishing-cli-results-to-a-snyk-project)
+For more information, see [Publishing CLI results to a Snyk Project](https://docs.snyk.io/scan-application-code/snyk-code/cli-for-snyk-code/publishing-cli-results-to-a-snyk-project-and-ignoring-cli-results#publishing-cli-results-to-a-snyk-project)
 
 ### `--json`
 

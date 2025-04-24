@@ -8,7 +8,7 @@ Snyk for Apex is supported only for Snyk Code.
 
 Interfile is currently not supported. The data flow is monitored within a single file, not between multiple files.
 
-`.trigger` and `.cls` files are supported.
+`.trigger` files are supported.
 
 ## Getting started with Snyk for Apex across environments
 
@@ -38,13 +38,13 @@ To customize test options, run other commands, exclude directories and files, an
 #### What's next?
 
 * [Open a Fix PR](apex.md#open-a-fix-pr)&#x20;
-* [Configure PR Checks](../../scan-using-snyk/run-pr-checks/configure-pr-checks.md)
+* [Configure PR Checks](../../scan-application-code/run-pr-checks/configure-pr-checks.md)
 
 ### Snyk integrations&#x20;
 
-:link: For integrated development environments, see [Use Snyk in your IDE](../../integrate-with-snyk/ide-tools/).
+:link: For integrated development environments, see [Use Snyk in your IDE](../../integrations/ide-tools/).
 
-:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrate-with-snyk/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
+:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrations/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
 
 ## Troubleshooting
 

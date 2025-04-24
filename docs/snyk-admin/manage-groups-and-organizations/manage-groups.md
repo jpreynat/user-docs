@@ -42,7 +42,7 @@ Select **Policies** to view the license and security policies for your Group:
 
 </div>
 
-See [Policies](../../scan-using-snyk/policies/) for details.
+See [Policies](../../manage-issues/policies/) for details.
 
 ## Group settings
 

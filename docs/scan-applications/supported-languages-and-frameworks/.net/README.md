@@ -10,9 +10,9 @@ You might encounter false positives or false negatives for partially supported f
 
 Snyk Code supports the following frameworks:
 
-* .NET Framework 4.6-4.8.x
-* ASP.NET 6.x
-* .NET 6
+* NET Framework
+* ASP.NET (version 6.x)
+* .NET Core:
 
 ### Open source and licensing
 
@@ -165,11 +165,11 @@ You can also **update your language preferences.**
 
 #### Fixing vulnerabilities for .NET
 
-For a general understanding of how Snyk helps you fix Open Source vulnerabilities within your Projects, see [Fix your vulnerabilities](../../../scan-using-snyk/snyk-open-source/manage-vulnerabilities/fix-your-vulnerabilities.md).
+For a general understanding of how Snyk helps you fix Open Source vulnerabilities within your Projects, see [Fix your vulnerabilities](../../snyk-open-source/manage-vulnerabilities/fix-your-vulnerabilities.md).
 
 {% hint style="info" %}
 **Feature availability**\
-The Fix PR feature is _only_ available across Snyk [SCM](../../../integrate-with-snyk/git-repository-and-ci-cd-integrations-comparisons.md) integrations.
+The Fix PR feature is _only_ available across Snyk [SCM](../../../integrations/git-repository-and-ci-cd-integrations-comparisons.md) integrations.
 {% endhint %}
 
 #### Fix PR supported manifest files
@@ -178,11 +178,11 @@ If you are currently managing your Project dependencies with NuGet and leveragin
 
 ### Snyk integrations&#x20;
 
-:link: For integrated development environments, see [Use Snyk in your IDE](../../../integrate-with-snyk/ide-tools/).
+:link: For integrated development environments, see [Use Snyk in your IDE](../../../integrations/ide-tools/).
 
-:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../../integrate-with-snyk/snyk-ci-cd-integrations/) and [Snyk API](../../../snyk-api/)).
+:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../../integrations/snyk-ci-cd-integrations/) and [Snyk API](../../../snyk-api/)).
 
 ## Help
 
-For best practices and troubleshooting, see [Help](../../../scan-using-snyk/supported-languages-and-frameworks/.net/help-.net.md).
+For best practices and troubleshooting, see [Help](help-.net.md).
 

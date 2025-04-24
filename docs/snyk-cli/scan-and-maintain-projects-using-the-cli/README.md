@@ -3,13 +3,13 @@
 This group of pages provides detailed "how-to" information for the Snyk CLI.
 
 * The [CLI tools](cli-tools/) provide ways to perform tasks that cannot be done using CLI commands and options.
-* [Use Snyk Open Source from the CLI](snyk-cli-for-open-source/), [Analyze code with the Snyk Code CLI](using-snyk-code-from-the-cli/), and [Use Snyk Container from the CLI ](snyk-cli-for-snyk-container/)explain how to perform basic operations with Snyk Open Source, Snyk Code, and Snyk Container using the CLI.
+* [Use Snyk Open Source from the CLI](use-snyk-open-source-from-the-cli/), [Analyze code with the Snyk Code CLI](using-snyk-code-from-the-cli/), and [Use Snyk Container from the CLI ](use-snyk-container-from-the-cli/)explain how to perform basic operations with Snyk Open Source, Snyk Code, and Snyk Container using the CLI.
 
 The remaining pages address [Scanning Projects](./#scanning-projects), [Monitoring Projects](./#monitoring-projects), and [Maintaining Projects](./#maintaining-projects). The pages are arranged in alphabetical order by keyword.
 
 ## Scanning Projects
 
-* [The **.snyk** file](../../scan-using-snyk/policies/the-.snyk-file.md)
+* [The **.snyk** file](../../manage-issues/policies/the-.snyk-file.md)
 * [A **.snyk** policy file in a different directory from the manifest file](a-.snyk-policy-file-in-a-different-directory-from-the-manifest-file.md)
 * [Failing **builds** in Snyk CLI](failing-of-builds-in-snyk-cli.md)
 * [**Ignore** vulnerabilties using Snyk CLI](ignore-vulnerabilities-using-the-snyk-cli.md)

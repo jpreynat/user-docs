@@ -176,13 +176,13 @@ To build the dependency tree, Snyk analyzes the `Gopkg.lock` files in your Git r
 #### What's next?
 
 * [Open a Fix PR](go.md#open-a-fix-pr)&#x20;
-* [Configure PR Checks](../../scan-using-snyk/run-pr-checks/configure-pr-checks.md)
+* [Configure PR Checks](../../scan-application-code/run-pr-checks/configure-pr-checks.md)
 
 ### Snyk integrations&#x20;
 
-:link: For integrated development environments, see [Use Snyk in your IDE](../../integrate-with-snyk/ide-tools/).
+:link: For integrated development environments, see [Use Snyk in your IDE](../../integrations/ide-tools/).
 
-:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrate-with-snyk/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
+:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrations/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
 
 ## Troubleshooting
 

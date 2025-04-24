@@ -211,7 +211,7 @@ snyk test --yarn-workspaces --strict-out-of-sync=false --detection-depth=6
 
 
 
-Use a common `.snyk` policy file, if you maintain ignores and patches in one place to be applied for all detected workspaces by using the policy path (see [The .snyk file](../../scan-using-snyk/policies/the-.snyk-file.md)).
+Use a common `.snyk` policy file, if you maintain ignores and patches in one place to be applied for all detected workspaces by using the policy path (see [The .snyk file](../../manage-issues/policies/the-.snyk-file.md)).
 
 ```javascript
 snyk test --all-projects --strict-out-of-sync=false --policy-path=src/.snyk
@@ -219,9 +219,9 @@ snyk test --all-projects --strict-out-of-sync=false --policy-path=src/.snyk
 
 ### Snyk Web UI (Git repository integration)
 
-You can import JavaScript repositories from any Git services (Source Control Managers) Snyk supports (see [Git repositories](../../integrate-with-snyk/git-repositories-scms-integrations-with-snyk/)). After the import, Snyk analyzes your Projects based on their supported manifest files.
+You can import JavaScript repositories from any Git services (Source Control Managers) Snyk supports (see [Git repositories](../../integrations/git-repository-scm-integrations/)). After the import, Snyk analyzes your Projects based on their supported manifest files.
 
-:link: [How Snyk works for open source and licensing](../../scan-using-snyk/supported-languages-and-frameworks/introduction-to-snyk-supported-languages-and-frameworks.md#how-snyk-works-for-open-source-and-licensing)
+:link: [How Snyk works for open source and licensing](introduction-to-snyk-supported-languages-and-frameworks.md#how-snyk-works-for-open-source-and-licensing)
 
 #### Import Project
 
@@ -272,17 +272,17 @@ If you use the **zero-installs** feature, Snyk Fix PRs do not update the **.yarn
 #### What's next?
 
 * [Open a Fix PR](javascript.md#open-a-fix-pr)&#x20;
-* [Configure PR Checks](../../scan-using-snyk/run-pr-checks/configure-pr-checks.md)
+* [Configure PR Checks](../../scan-application-code/run-pr-checks/configure-pr-checks.md)
 
 ### Snyk integrations&#x20;
 
-:link: For integrated development environments, see [Use Snyk in your IDE](../../integrate-with-snyk/ide-tools/).
+:link: For integrated development environments, see [Use Snyk in your IDE](../../integrations/ide-tools/).
 
-:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrate-with-snyk/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
+:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrations/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
 
 ## Best practices
 
-To apply best practices for Javascript environments, see [Best practices for Javascript](../../scan-using-snyk/supported-languages-and-frameworks/javascript/snyk-for-javascript-node.js-developers.md).
+To apply best practices for Javascript environments, see [Best practices for Javascript](working-with-snyk-in-your-environment/snyk-for-javascript-node.js-developers.md).
 
 ## Troubleshooting
 

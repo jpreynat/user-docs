@@ -53,19 +53,6 @@ Authentication credentials not recognized, or user access is not provisioned. Re
 **HTTP Status:** [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401)
 
 
-### [SNYK-0006](#snyk-0006)
-
-#### Test limit reached
-
-You have reached the maximum number of tests in your Snyk plan. This causes Snyk tests on PRs and CLI to fail. Deactivate Snyk Test on your Project or upgrade your Snyk plan.
-
-**HTTP Status:** [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/4409805538833-Rate-limit-hit-while-testing-the-project](https://support.snyk.io/hc/en-us/articles/4409805538833-Rate-limit-hit-while-testing-the-project)
-- [https://docs.snyk.io/scan-using-snyk/working-with-snyk-in-your-environment/what-counts-as-a-test](https://docs.snyk.io/scan-using-snyk/working-with-snyk-in-your-environment/what-counts-as-a-test)
-- [https://support.snyk.io/hc/en-us/articles/360001945297-Snyk-Test-of-PR-failing-due-to-test-limit](https://support.snyk.io/hc/en-us/articles/360001945297-Snyk-Test-of-PR-failing-due-to-test-limit)
-
 ### [SNYK-9999](#snyk-9999)
 
 #### Request not fulfilled due to server error 
@@ -83,7 +70,7 @@ The server cannot process the request due to an unexpected error. Check Snyk sta
 
 #### Analysis file count limit exceeded
 
-This error occurs when the analysis target has a supported file count that exceeds current system limits.
+This error occurs when the analysis target has a supported file count which exceeds current system limits.
 
 To reduce the file count, use a `.snyk` file to ignore specified directories or files. Alternatively, use the Snyk CLI to analyze individual subdirectories separately.
 
@@ -102,23 +89,10 @@ This error occurs when the analysis target generates a result with a byte size t
 
 To reduce the overall result size, use a `.snyk` file to ignore specified directories or files. Alternatively, use the Snyk CLI to analyze individual subdirectories separately.
 
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
+**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
 
 **Help Links:**
 - [https://docs.snyk.io/scan-applications/start-scanning-using-the-cli-web-ui-or-api/snyk-code-and-your-repositories/excluding-directories-and-files-from-the-import-process](https://docs.snyk.io/scan-applications/start-scanning-using-the-cli-web-ui-or-api/snyk-code-and-your-repositories/excluding-directories-and-files-from-the-import-process)
-- [https://docs.snyk.io/snyk-cli/using-snyk-code-from-the-cli](https://docs.snyk.io/snyk-cli/using-snyk-code-from-the-cli)
-
-### [SNYK-CODE-0003](#snyk-code-0003)
-
-#### Analysis target size limit exceeded
-
-This error occurs when the analysis target byte size exceeds current system limits.
-
-To reduce the overall result size, use a `.snyk` file to ignore specified directories or files. Alternatively, use the Snyk CLI to analyze individual subdirectories separately.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-**Help Links:**
 - [https://docs.snyk.io/snyk-cli/using-snyk-code-from-the-cli](https://docs.snyk.io/snyk-cli/using-snyk-code-from-the-cli)
 
 ---
@@ -200,7 +174,7 @@ The media format of the request is not supported. Change media format, then try 
 
 
 ---
-# [Open Source Languages & Package Managers](https://docs.snyk.io/scan-applications/supported-languages-and-frameworks/supported-languages-frameworks-and-feature-availability-overview#open-source-and-licensing-snyk-open-source)
+# [Open Source Languages & Package Managers](https://docs.snyk.io/products/snyk-open-source/language-and-package-manager-support)
 ### [SNYK-OS-0001](#snyk-os-0001)
 
 #### Unable to parse manifest file
@@ -342,67 +316,6 @@ If this step is successful locally, it is possible that Snyk is running another 
 - [https://learn.microsoft.com/en-us/dotnet/core/tools/global-json](https://learn.microsoft.com/en-us/dotnet/core/tools/global-json)
 - [https://github.com/snyk/snyk-nuget-plugin/blob/885486aa656c28d3db465c8d22710770d5cc6773/lib/nuget-parser/cli/dotnet.ts#L67](https://github.com/snyk/snyk-nuget-plugin/blob/885486aa656c28d3db465c8d22710770d5cc6773/lib/nuget-parser/cli/dotnet.ts#L67)
 
-### [SNYK-OS-DOTNET-0006](#snyk-os-dotnet-0006)
-
-#### Missing MSBuild Condition Construct in project file
-
-The `dotnet` tool was unable to locate the `.targets`, `.csproj` or `.props` file responsible for one or more MSBuild conditions in your project file.
-
-The tool encountered an error like 
-```
-/path/to/file/project.csproj(33,13): error MSB4100: Expected "$(SomeCondition)" to evaluate to a boolean instead of "", in condition "!$(SomeCondition)".
-```
-
-This means the condition definition is missing in the project file that is currently being restored and in any project linked to it from there.      
-
-Snyk can scan only the project files accessible in the current repository or the private dependencies available to Snyk.
-
-For example, if your code has the following structure:
-
-```title=project.targets
-<Project>
-  <PropertyGroup>
-    <SomeCondition Condition="'$(SomeCondition)' == ''">false</SomeCondition>
-  </PropertyGroup>
-</Project>
-```
-
-And
-
-```title=project.csproj
-<Project Sdk='Microsoft.NET.Sdk'>
-  <Import Project='..\external-libraries\some-library\project.targets' />
-  <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
-  </PropertyGroup>
-  <ItemGroup Condition='!$(SomeCondition)'>
-    <PackageReference Include='Newtonsoft.Json' Version='13.0.3' />
-  </ItemGroup>
-</Project>
-```
-
-And `external-libraries` is not a part of your repository currently being scanned, Snyk is not able to find it.
-
-This error occurs when your code depends on external libraries that are added to or generated from your source code using external tools unknown to Snyk or as part of a build step in your build or a deployment pipeline.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-**Help Links:**
-- [https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-conditional-constructs](https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-conditional-constructs)
-
-### [SNYK-OS-DOTNET-0007](#snyk-os-dotnet-0007)
-
-#### No target frameworks found in manifest files
-
-Snyk was unable to detect any `<TargetFramework>`s in the supplied manifest files. 
-
-If you are using `Directory.Build.props` files to determine the target framework, ensure that it is named as such. Due to performance considerations on the customer's SCM network, Snyk does not perform case-insensitive searches for `.props` files.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-**Help Links:**
-- [https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-by-directory?view=vs-2022#directorybuildprops-and-directorybuildtargets](https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-by-directory?view=vs-2022#directorybuildprops-and-directorybuildtargets)
-
 ### [SNYK-OS-GO-0001](#snyk-os-go-0001)
 
 #### Failed to access private module
@@ -490,44 +403,6 @@ Snyk currently does not support external file generation in your project. This l
 Snyk can only work with the files available in your repository and does not have insight into the generation process for external files.
 
 **HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-GO-0007](#snyk-os-go-0007)
-
-#### Unable to access private dependencies
-
-The Go tool encountered a `DepsError` while trying to download a private dependency. Private repositories that are not accessible to the public internet and are not available on the official Go proxy mirror are cloned with a version control system and built on demand. 
-This requires the VCS to have the correct access rights to that repository.
-
-Snyk supports private repositories that are hosted in the same Organization and on the same Project that is scanned for vulnerabilities. The authentication to the private repository is the same as the authentication used to integrate that repository with Snyk. 
-
-This error appears when the authorization credentials do not allow access to the requested private dependency. 
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-**Help Links:**
-- [https://go.dev/ref/mod#vcs](https://go.dev/ref/mod#vcs)
-
-### [SNYK-OS-GO-0008](#snyk-os-go-0008)
-
-#### Unable to fetch private dependencies
-
-The Go tool encountered a permissions error while fetching one of the private dependencies. Ensure that the integration token you used to sign in to Snyk is properly configured so that Snyk can access the private dependencies.
-
-The Snyk Go integration only supports private dependencies that are used inside the same Organization as the Project you are scanning.
-
-This error appears when Snyk is unable to properly access the authorization credentials for the requested private dependency. 
-
-**HTTP Status:** [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401)
-
-
-### [SNYK-OS-GO-0009](#snyk-os-go-0009)
-
-#### Toolchain not available
-
-Could not download Go toolchain.
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
 
 
 ### [SNYK-OS-MAVEN-0001](#snyk-os-maven-0001)
@@ -809,7 +684,7 @@ The configuration parameter does not meet the expected data type. Please ensure 
 **HTTP Status:** [400](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400)
 
 
-### [SNYK-OS-PYTHON-0001](#snyk-os-python-0001)
+### [SNYK-OS-PIP-0001](#snyk-os-pip-0001)
 
 #### Unsupported manifest file type for remediation
 
@@ -820,7 +695,7 @@ The provided requirements file is not supported by Snyk for Python.
 **Help Links:**
 - [https://docs.snyk.io/scan-applications/supported-languages-and-frameworks/python](https://docs.snyk.io/scan-applications/supported-languages-and-frameworks/python)
 
-### [SNYK-OS-PYTHON-0002](#snyk-os-python-0002)
+### [SNYK-OS-PIP-0002](#snyk-os-pip-0002)
 
 #### Received more manifests than expected
 
@@ -829,7 +704,7 @@ Too many manifest files were provided in the request body.
 **HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
 
 
-### [SNYK-OS-PYTHON-0003](#snyk-os-python-0003)
+### [SNYK-OS-PIP-0003](#snyk-os-pip-0003)
 
 #### Failed to apply dependency updates
 
@@ -838,83 +713,13 @@ An error occurred while updating dependencies.
 **HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
 
 
-### [SNYK-OS-PYTHON-0004](#snyk-os-python-0004)
-
-#### Python package not found
-
-A package listed in the manifest file cannot be found in the Python Package Index(PyPI).
-Make sure all packages included in the manifest file are public existing ones.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-PYTHON-0005](#snyk-os-python-0005)
-
-#### Syntax errors found in manifest file
-
-The manifest file has syntax issues like incorrect package names or unsupported characters.
-Make sure the manifest file follows the syntax stardards and can be installed locally as well.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-PYTHON-0006](#snyk-os-python-0006)
-
-#### Python version not supported
-
-At least one of the packages requires a Python version that doesn't match the one used in the project scan.
-Make sure to select a suitable Python version from the organization Python language settings.
-Alternatively, add a `.snyk` file for Python version selection override.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-PYTHON-0007](#snyk-os-python-0007)
-
-#### Packages versions caused conflicts
-
-Two or more packages have conflicting version requirements that cannot be resolved.
-Make sure no two packages and their requirements cause conflicts and that the manifest file can be installed locally.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-PYTHON-0008](#snyk-os-python-0008)
+### [SNYK-OS-PIP-0004](#snyk-os-pip-0004)
 
 #### No matching distribution found for one or more of the packages
 
 At least one of the packages requires a Python version that doesn't match the one used in the project scan.
 Make sure to select a suitable Python version from the organization Python language settings.
 Alternatively, add a `.snyk` file for Python version selection override.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-PYTHON-0009](#snyk-os-python-0009)
-
-#### Packages installation failed
-
-Some packages failed during installation due to missing system dependencies, compilation errors, or other package-specific issues.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-PYTHON-0010](#snyk-os-python-0010)
-
-#### Python version not supported
-
-At least one of the packages requires a Python version that doesn't match the one used in the project scan.
-Make sure to use the correct python version in the requires section of the Pipfile.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-
-### [SNYK-OS-PYTHON-0011](#snyk-os-python-0011)
-
-#### No matching distribution found for one or more of the packages
-
-At least one of the packages requires a Python version that doesn't match the one used in the project scan.
-Make sure to use the correct python version in the requires section of the Pipfile.
 
 **HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
 
@@ -1063,7 +868,7 @@ Unable to find the coordinates for the provided SHA1. Please verify the data you
 - [https://docs.snyk.io/snyk-cli/test-for-vulnerabilities/scan-all-unmanaged-jar-files](https://docs.snyk.io/snyk-cli/test-for-vulnerabilities/scan-all-unmanaged-jar-files)
 
 ---
-# [PURL Vulnerabilities](https://docs.snyk.io/scan-applications/snyk-open-source/manage-vulnerabilities/snyk-vulnerability-database#about-the-vulnerability-database)
+# [PURL Vulnerabilities](https://docs.snyk.io/introducing-snyk/getting-started-snyk-intel-vuln-db-access#about-the-snyk-vulnerability-database)
 ### [SNYK-OSSI-1040](#snyk-ossi-1040)
 
 #### Your Organisation is not authorized to perform this action
@@ -1336,160 +1141,6 @@ This issue is unexpected, and the service will recover shortly. If the error sti
 
 
 ---
-# PRChecks
-### [SNYK-PR-CHECK-0001](#snyk-pr-check-0001)
-
-#### Error reading manifest
-
-Snyk failed to read 1 or more manifest files.
-Sometimes things go wrong: a flaky connection, 3rd party services go down and Snyk is unable to read the files needed in order to test your project. 
-
-If this happens, you could try:
-
-- Opening and re-opening your Pull Request / Merge Request, to kick off a new test
-- Removing and re-adding the repo to Snyk
-
-Ultimately, you should contact support@snyk.io if the issue persists
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/360000910517-Failed-to-read-manifest-file](https://support.snyk.io/hc/en-us/articles/360000910517-Failed-to-read-manifest-file)
-
-### [SNYK-PR-CHECK-0002](#snyk-pr-check-0002)
-
-#### Manifest not found
-
-Snyk uses your project manifest file to analyze your projects for vulnerabilities. When you import a project for monitoring, Snyk scans the project to locate the manifest file and then remembers where that file is. 
-When a project manifest file is moved or deleted, we still try to look for in it in the last known location in order to run tests on commit statuses. If we can't find the file, this error can occur.
-
-If this happens, you could try the following:
-1. Delete the matching project from your account in the Snyk app (UI or CLI).
-2. Now import the same project from scratch.
-
-As during the original import, Snyk scans the project and locates the manifest file.
-
-**HTTP Status:** [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/360000910537-Manifest-not-found](https://support.snyk.io/hc/en-us/articles/360000910537-Manifest-not-found)
-
-### [SNYK-PR-CHECK-0003](#snyk-pr-check-0003)
-
-#### Rate limit hit while testing project
-
-Snyk makes requests to your SCM when testing a project, in order to analyze your projects for vulnerabilities. If we need to make a lot of requests in a short time period, we may encounter third party rate limits, and this error can occur.
-
-If you receive any of these errors, try re-running the tests, by closing and reopening the pull request.
-
-**HTTP Status:** [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429)
-
-
-### [SNYK-PR-CHECK-0004](#snyk-pr-check-0004)
-
-#### Out of Sync Error
-
-Sometimes a project may become out of sync between the lockfile and the manifest file. This might happen if the package.json is modified or updated but the lockfile is not. 
-
-This can be resolved by ensuring the lockfile and manifest file are correctly synced, by executing npm install or yarn install.
-
-In some cases, it may be necessary to delete the node_modules folder and the package-lock.json and run npm install again to force a full reinstall. 
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/360000912457-Out-of-sync-manifest-lockfile-in-the-project](https://support.snyk.io/hc/en-us/articles/360000912457-Out-of-sync-manifest-lockfile-in-the-project)
-
-### [SNYK-PR-CHECK-0005](#snyk-pr-check-0005)
-
-#### Failed determining project target
-
-An internal error occurred, whereby Snyk was unable to determine the correct target for a given project in your PR Check.
-
-If you receive this error, try re-running the tests, by closing and reopening the pull request.
-
-Ultimately, you should contact support@snyk.io if the issue persists.
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
-
-
-### [SNYK-PR-CHECK-0006](#snyk-pr-check-0006)
-
-#### Failed to complete the test
-
-A "Failed to complete testing check status" appears in your commit checks when an unknown error occurs while Snyk was trying to test your projects for vulnerabilities or license issues.
-
-If you receive this error, try re-running the tests, by closing and reopening the pull request.
-
-Ultimately, you should contact support@snyk.io if the issue persists.
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/360004358517-Unknown-PR-test-error](https://support.snyk.io/hc/en-us/articles/360004358517-Unknown-PR-test-error)
-
-### [SNYK-PR-CHECK-0007](#snyk-pr-check-0007)
-
-#### Failed to fetch merge commit SHA
-
-In order for snyk test to run, we need the merge commit SHA from the GitHub. For some reason, we couldn’t get it.
-
-Try closing and then reopening the pull request, or you can Skip the Pull Request Check if it is consistent.
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/360005281837](https://support.snyk.io/hc/en-us/articles/360005281837)
-
-### [SNYK-PR-CHECK-0008](#snyk-pr-check-0008)
-
-#### Merge conflict error
-
-Merge Conflict Error is not a Snyk specific issue but rather some issues on your SCM environment. As an example, merge conflicts could happen when people make different changes to the same line of the same file, or when one person edits a file and another person deletes the same file.
-
-To resolve this, you might need to figure out all the merge conflicts on your SCM environment and resolve them to fully remediate these types of errors on Snyk. As a note, this cannot be modified/changed on Snyk's side.
-
-**HTTP Status:** [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/360005281098](https://support.snyk.io/hc/en-us/articles/360005281098)
-
-### [SNYK-PR-CHECK-0009](#snyk-pr-check-0009)
-
-#### Failed to detect issues
-
-Snyk is always trying to check for new issues and vulnerabilities to keep you safe. We do so by testing on your code on webhook Pull Request events and Push events.
-
-Occasionally you might see a "Failed to detect issues" commit status which may block your PR. This means that we tried to run a test against your changes but unfortunately something went wrong / we encountered an internal problem. If this happens to you try recreating the pull request and if it still occurs reach out and let us know which user, organization and project and commit sha you experienced the issue with on support@snyk.io
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
-
-**Help Links:**
-- [https://support.snyk.io/hc/en-us/articles/360000920678-Failed-to-detect-issues](https://support.snyk.io/hc/en-us/articles/360000920678-Failed-to-detect-issues)
-
-### [SNYK-PR-CHECK-0010](#snyk-pr-check-0010)
-
-#### No valid credentials to process PR check
-
-Snyk uses credentials configured on your integration to test your code and to update your PR Check.
-
-If this error occurs, please ensure your integration and credentials are correctly set up, by following the instructions for your SCM here: https://docs.snyk.io/integrate-with-snyk/git-repository-scm-integrations
-
-**HTTP Status:** [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401)
-
-
-### [SNYK-PR-CHECK-0011](#snyk-pr-check-0011)
-
-#### Failed to generate a commit status
-
-Snyk is always trying to check for new issues and vulnerabilities to keep you safe. We do so by testing on your code on webhook Pull Request events and Push events.
-
-Occasionally you might see a "Failed to generate a commit status" which may block your PR. This means that we tried to run a test against your changes but unfortunately something went wrong / we encountered an internal problem. If this happens to you try recreating the pull request and if it still occurs reach out and let us know which user, organization and project and commit sha you experienced the issue with on support@snyk.io
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
-
-
----
 # Fix
 ### [SNYK-PR-TEMPLATE-0001](#snyk-pr-template-0001)
 
@@ -1506,12 +1157,10 @@ Snyk could not get the custom pull request template attributes, using the given 
 
 #### Not found
 
-We could not find your pull request template, have you created one yet? Please check the attached link for instructions on how to setup your pull request template.
+Could not find pull request template. The file might be missing or wrong file name was provided.
 
 **HTTP Status:** [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404)
 
-**Help Links:**
-- [https://docs.snyk.io/scan-application-code/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta](https://docs.snyk.io/scan-application-code/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta)
 
 ### [SNYK-PR-TEMPLATE-0003](#snyk-pr-template-0003)
 
@@ -1610,15 +1259,4 @@ Could not load JSON file after substituting Snyk variables into the custom PR te
 **Help Links:**
 - [https://docs.snyk.io/scan-application-code/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta](https://docs.snyk.io/scan-application-code/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta)
 
-### [SNYK-PR-TEMPLATE-0012](#snyk-pr-template-0012)
-
-#### Failed to render default PR template
-
-Could not render default PR template.
-
-**HTTP Status:** [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
-
-**Help Links:**
-- [https://docs.snyk.io/scan-application-code/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta](https://docs.snyk.io/scan-application-code/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta)
-
---- Generated at 2024-01-18T09:36:08.289Z
+--- Generated at 2023-10-31T15:04:54.119Z

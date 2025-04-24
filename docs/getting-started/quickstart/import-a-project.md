@@ -42,7 +42,7 @@ Forked repositories are marked with a ![Fork symbol](<../../.gitbook/assets/Scre
 In **Settings**, optionally choose to:
 
 * **Add custom file location** to add any additional dependencies from custom paths.
-* **Exclude folders** to list up to ten folders to exclude from scanning during the import, for example, to shorten scanning time. Each folder name must not exceed 100 characters. This feature is supported for Snyk Open Source and Snyk Container.
+* **Exclude folders** to list up to ten folders to exclude from scanning during the import, for example, to shorten scanning time.
 
 ## Import progress
 
@@ -69,10 +69,10 @@ If you see any errors during import, see [Project import errors](https://support
 Importing a Project also does the following:
 
 * Sets Snyk to run a regular scan on that Project for issues; see [Test frequency settings](../../snyk-admin/manage-settings/usage-settings.md#test-frequency-settings) for the defaults.
-* Initiates some automation, especially default Snyk tests on pull and merge requests, which help prevent vulnerabilities from being added to the Project. This automation fails builds according to your conditions and can be disabled or customized in your [integration settings](../../integrate-with-snyk/git-repositories-scms-integrations-with-snyk/).
+* Initiates some automation, especially default Snyk tests on pull and merge requests, which help prevent vulnerabilities from being added to the Project. This automation fails builds according to your conditions and can be disabled or customized in your [integration settings](../../integrations/git-repository-scm-integrations/).
 
 {% hint style="info" %}
-For training on best practices in using automation, visit the Snyk course [Source Code Manager Configurations](https://learn.dev.snyk.io/lesson/configure-snyk-scm/).
+For training on best practices in using automation, visit the Snyk Training course: [Source Code Manager Configurations](https://training.snyk.io/courses/source-code-manager-configurations).
 {% endhint %}
 
 ## What's next?

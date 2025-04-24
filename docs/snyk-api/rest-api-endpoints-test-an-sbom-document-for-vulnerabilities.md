@@ -1,9 +1,10 @@
 # REST API endpoints: Test an SBOM document for vulnerabilities
 
 {% hint style="info" %}
-**Feature availability**
+**Feature availability**\
+The Snyk API is available to customers on Snyk Enterprise plans. See [Plans and pricing ](https://snyk.io/plans/)for details.
 
-This feature is in [Early Access](../more-info/snyk-feature-release-process.md), for [Enterprise plan customers](https://snyk.io/plans/) only.
+The [API endpoints to test an SBOM document for vulnerabilities](https://apidocs.snyk.io/?version=2023-10-13%7Ebeta#post-/orgs/-org\_id-/sbom\_tests) are in Open Beta. Some of the functionality may change.
 {% endhint %}
 
 Snyk offers a [collection of API endpoints](https://apidocs.snyk.io/?version=2023-10-13%7Ebeta#post-/orgs/-org\_id-/sbom\_tests) to asynchronously test a software bill of materials (SBOM) document. You can use these endpoints to learn more about the vulnerabilities impacting your SBOM and its packages.
@@ -29,7 +30,7 @@ Testing your SBOM can be a long-running operation. Instead of waiting until the 
 Follow these steps to test a SCOM:
 
 1. Log in to the Snyk Web UI and retrieve your Organization ID (UUID format), Project ID (UUID), and API key.\
-   If you need help in finding these values, see [Group and Organization navigation](../snyk-admin/manage-groups-and-organizations/switch-between-groups-and-organizations.md), [View Project settings](../snyk-admin/snyk-projects/view-and-edit-project-settings.md), and [Authentication for API](../snyk-api-info/authentication-for-api.md).
+   If you need help in finding these values, see [Group and Organization navigation](../snyk-admin/manage-groups-and-organizations/switch-between-groups-and-organizations.md), [View Project settings](../snyk-admin/introduction-to-snyk-projects/view-and-edit-project-settings.md), and [Authentication for API](../snyk-api-info/authentication-for-api.md).
 2. Use any HTTP client, for example, `curl` or Postman, to make a request to the endpoint [Create an SBOM test run](https://apidocs.snyk.io/?version=2023-10-24%7Ebeta#post-/orgs/-org\_id-/sbom\_tests).&#x20;
 
 {% hint style="info" %}

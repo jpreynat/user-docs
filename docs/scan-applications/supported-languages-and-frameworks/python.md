@@ -23,12 +23,12 @@ Snyk Code supports the following frameworks:
 Features may not be available, depending on your plan. See the [Plans and pricing ](https://snyk.io/plans/) page for more details.
 {% endhint %}
 
-| Package managers / Features                  | CLI support | Git support | License scanning | Fix PRs |
-| -------------------------------------------- | ----------- | ----------- | ---------------- | ------- |
-| [Pip](https://pypi.org/project/pip/)         | ✔︎          | ✔︎          | ✔︎               | ✔︎      |
-| [Poetry](https://python-poetry.org)          | ✔︎          | ✔︎          | ✔︎               |         |
-| [Pipenv](https://pipenv.pypa.io/en/latest/)  | ✔︎          | ✔︎          | ✔︎               |         |
-| setup.py                                     | ✔︎          |             | ✔︎               |         |
+| Package managers / Features                  | CLI support | Git support    | License scanning | Fix PRs |
+| -------------------------------------------- | ----------- | -------------- | ---------------- | ------- |
+| [Pip](https://pypi.org/project/pip/)         | ✔︎          | ✔︎             | ✔︎               | ✔︎      |
+| [Poetry](https://python-poetry.org)          | ✔︎          | ✔︎             | ✔︎               |         |
+| [Pipenv](https://pipenv.pypa.io/en/latest/)  | ✔︎          | ✔︎ (Open beta) | ✔︎               |         |
+| setup.py                                     | ✔︎          |                | ✔︎               |         |
 
 Snyk builds a dependency tree and then uses the [vulnerability database](https://snyk.io/vuln) to find vulnerabilities in any of the dependencies in the tree.
 
@@ -119,6 +119,22 @@ snyk test --file=setup.py
 
 You can also convert `setup.py` to `requirements.txt` by installing the packages into a virtual environment and then running `pip freeze`.
 
+### Python version support
+
+Some Python Projects may have dependencies that are valid with certain versions of Python only.&#x20;
+
+Therefore, the version of Python used when scanning can affect the dependency tree Snyk generates.
+
+You can specify the version of Python that Snyk uses to scan dependencies in both the CLI and Git integration.
+
+To set the Python version in the CLI, add the following option to `snyk test` or `snyk monitor` with the value of the Python binary:
+
+```python
+--command=python3
+```
+
+For details, see the [Test command help](https://docs.snyk.io/snyk-cli/commands/test#options-for-python-projects) and the [Monitor command help](https://docs.snyk.io/snyk-cli/commands/monitor#options-for-python-projects).
+
 ### Snyk Web UI (Git repository integration)
 
 To scan your Projects, you must ensure your repository contains the supported manifest files
@@ -126,7 +142,8 @@ To scan your Projects, you must ensure your repository contains the supported ma
 #### Pip and Git repositories
 
 {% hint style="warning" %}
-URLs in `requirements.txt` files are not supported. They are removed before resolving the dependencies in the files.
+URLs in `requirements.txt` files are not supported, as this poses a security risk.\
+They are removed before resolving the dependencies in the files.
 {% endhint %}
 
 To scan Pip Projects, Snyk analyzes your `requirements.txt` files using native `pip` tooling in an isolated Linux environment.
@@ -162,6 +179,10 @@ Poetry dev dependencies are not included in scans by default. To change this, mo
 
 #### Pipenv and Git repositories
 
+{% hint style="info" %}
+Pipenv is available as an open beta feature, meaning that some of its functionalities might be subject to change.
+{% endhint %}
+
 {% hint style="warning" %}
 Private PyPI mirrors are not supported. `Pipfiles` specifying a private mirror as their only source will not be imported.
 {% endhint %}
@@ -169,7 +190,7 @@ Private PyPI mirrors are not supported. `Pipfiles` specifying a private mirror a
 To scan Pipenv Projects, Snyk analyzes your `Pipfile` and `Pipfile.lock` files using native `pipenv` tooling in an isolated Linux environment.
 
 {% hint style="info" %}
-Private packages and those with non-Linux OS requirements may be unresolvable and omitted from the dependency tree.
+When you scan in the isolated environment, private packages and those with non-Linux OS requirements may be unresolvable and omitted from the dependency tree.
 
 If a `Pipfile.lock` is present, any unresolved packages it contains are added to the top level of the dependency tree using versions from the lock file.&#x20;
 {% endhint %}
@@ -187,43 +208,25 @@ Pipenv dev dependencies are not included in scans by default. To change this, mo
 
 ### Python version support
 
-Some Python Projects may contain dependencies that require specific versions of Python.&#x20;
+Some Python Projects may have dependencies that are valid with certain versions of Python only.&#x20;
 
 Therefore, the version of Python used when scanning can affect the dependency tree Snyk generates.
 
 You can specify the version of Python that Snyk uses to scan dependencies in both the CLI and Git integration.
 
-#### Setting Python version in CLI Projects
-
-To set the Python version in the CLI, add the following option to `snyk test` or `snyk monitor` with the name of the Python binary:
-
-```sh
---command=python3
-```
-
-For details, see the [Test command help](https://docs.snyk.io/snyk-cli/commands/test#options-for-python-projects) and the [Monitor command help](https://docs.snyk.io/snyk-cli/commands/monitor#options-for-python-projects).
-
-#### Setting Python version in Git Projects
+#### Setting the Python version in Git Projects
 
 #### Pip and Python versions
 
-{% hint style="success" %}
-Selecting the minor version of Python to use in pip Project scans is in Open Beta. You can enable this in [snyk-preview.md](../../snyk-admin/manage-settings/snyk-preview.md "mention") (you may need to refresh the page after)
-
-Python version options for the default and open beta scenarios are detailed below.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Default" %}
 {% hint style="info" %}
-ProjectsWhen scanning pip Projects imported from Git, Snyk uses the version of Python specified in Organization settings or `.snyk` files.
+When you are scanning Pip Projects imported from Git, Snyk uses Python 2 or 3.&#x20;
 
-The supported versions are `2.7.16` and `3.7.4.`
+Currently the default supported versions are `2.7.16` and `3.7.4.`
 {% endhint %}
 
-By default, Snyk tests pip Projects using Python 3.
+By default, Snyk tests Pip Projects using Python 3.
 
-To define which Python Major version Snyk uses to test your Git-imported pip Projects, you can use Organization settings and [`.snyk` policy files](../../scan-using-snyk/policies/the-.snyk-file.md).
+To define which Python Major version Snyk uses to test your Git-imported Pip Projects, use either Organization settings or a [`.snyk` policy file](../../manage-issues/policies/the-.snyk-file.md).
 
 To define the Python version for all Projects in an Organization:
 
@@ -234,7 +237,9 @@ To define the Python version for all Projects in an Organization:
 
 <figure><img src="../../.gitbook/assets/image (148).png" alt=""><figcaption><p>Pip Python version settings</p></figcaption></figure>
 
-If you require a Project in an Organization to use a different Python version, you may add a `.snyk` file to the Project repository and specify the desired version.
+Snyk recommends you create different Organizations to work with different Python versions.
+
+If you prefer one Organization but require Projects to use different Python versions, you may add a `.snyk` file to a Project repository and specify the desired version.
 
 The `.snyk` file must be in the same directory as the Project manifest file.
 
@@ -246,59 +251,15 @@ language-settings:
 ```
 
 In this example, Snyk runs the scan using its currently supported version of Python 3. Snyk does not use the exact minor and patch version specified.
-{% endtab %}
-
-{% tab title="Open Beta" %}
-{% hint style="info" %}
-When scanning pip Projects imported from Git, Snyk uses the version of Python specified in Organization settings or `.snyk` files.
-
-The supported versions are `2.7`, `3.7`, `3.8`, `3.9`, `3.10`,`3.11`.
-{% endhint %}
-
-Snyk uses a recent `patch` version for each of the supported `minor` series.
-
-By default, Snyk tests pip Projects using Python 3.7.
-
-{% hint style="warning" %}
-The behavior of imports, re-tests, and PR checks for Projects with dependencies requiring a higher version of Python varies according to the version specified:
-
-* Python 2.7 or 3.7 - scans will succeed, but the incompatible dependencies are omitted from the results (this is the default, pre-beta behavior).
-* Python 3.8 or above - scans will fail with an [error](https://docs.snyk.io/more-info/error-catalog#snyk-os-pip-0004) including details of the first failed package, the Python version it requires, and the Python version used.
-{% endhint %}
-
-To define which Python minor version Snyk uses to test your Git-imported pip Projects, you can use Organization settings and [`.snyk` policy files](../../scan-using-snyk/policies/the-.snyk-file.md).
-
-To define the Python version for all Projects in an Organization:
-
-1. Log in to your Snyk account and navigate to the relevant Group and Organization.
-2. Select **Settings**, then **Languages**.
-3. Select **Edit settings** for **Python**.
-4. From the **Python version** dropdown, select the Python version to use when testing Projects for this Organization.
-
-<figure><img src="../../.gitbook/assets/python-version.png" alt=""><figcaption><p>Pip Python version settings</p></figcaption></figure>
-
-If you require a Project in an Organization to use a different Python version, you may add a `.snyk` file to the Project repository and specify the desired version.
-
-```python
-language-settings:
-  python: '3.10'
-```
-
-The `.snyk` file must be in the same directory as the Project manifest file.
-
-Snyk will select which Python version according to the `major`, `minor` and `patch` versions specified in the `.snyk` file.
-
-* `Major` version only (e.g. 2 or 3) - scanned with default `minor` versions - 2.7 or 3.7
-* `Major` and `minor` version (e.g. 3.7, 3.8, 3.9, 3.10, 3.11) - scanned with 3.7, 3.8, 3.9, 3.10 or 3.11
-* `Major`, `minor` and `patch` version (e.g. 3.8.x, 3.9.x, 3.10.x, 3.11.x) - the specific `patch` version is ignored, scanned with default versions of 3.8, 3.9, 3.10 or 3.11
-* Any versions specified with an unsupported `minor` version will default to 2.7 or 3.7
-{% endtab %}
-{% endtabs %}
 
 #### Pipenv and Python versions
 
+{% hint style="warning" %}
+Pipenv is available as an open feature, meaning that some of its functionalities might be subject to change.
+{% endhint %}
+
 {% hint style="info" %}
-Supported Python versions are `3.8`, `3.9`, `3.10`, `3.11`.
+Currently supported Python versions are `3.8`, `3.9`, `3.10`, `3.11`.
 {% endhint %}
 
 Snyk uses Python version information specified in each `Pipfile` to choose the major and minor versions to use in scanning, for example:
@@ -308,12 +269,12 @@ Snyk uses Python version information specified in each `Pipfile` to choose the m
 python_version = "3.6"
 ```
 
-Specific patch versions are ignored; Snyk uses a recent patch version from each series.
+Specific Patch versions are ignored; Snyk uses a recent Patch version from each series.
 
 Snyk defaults to Python `3.10` if the `Pipfile` contains:
 
 * No Python version information
-* Only a major version
+* Only a Major version
 * An unsupported version
 
 #### Poetry and Python versions

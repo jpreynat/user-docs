@@ -15,6 +15,8 @@ See the [Reports Overview](legacy-reports-overview.md) page for more information
 Reports do not support Snyk Code Projects.
 {% endhint %}
 
-To view reports, select the **Reports** menu option:
+## Accessing reports
+
+Select the **Reports** menu option to view reports:
 
 ![The report tab is located in the top nav bar as shown here.](../../../.gitbook/assets/snyk-org-report.png)

@@ -3,7 +3,7 @@
 {% hint style="info" %}
 **Feature availability**
 
-The environment variable to enable Git clone capabilities is in [Closed Beta](../../../../more-info/snyk-feature-release-process.md). However, it is the preferred way to run Snyk Code analysis through the Broker and is fully capable. Contact your Snyk account management team to find out more.&#x20;
+The environment variable to enable Git clone capabilities is in Closed Beta. However, it is the preferred way to run Snyk Code analysis through the Broker and is fully capable. Contact your Snyk account management team to find out more.&#x20;
 {% endhint %}
 
 Brokered Snyk Code enables the Broker to accept code files, and the Broker then scans between the SCM system and Snyk.
@@ -50,7 +50,9 @@ docker run --restart=always \
        snyk/broker:github-com
 ```
 
-If you are using a custom `accept` file from a separate folder, with the `ACCEPT` environment variable, you cannot use any of the other `ACCEPT` mechanisms, such as `ACCEPT_CODE` or `ACCEPT_IAC`.
+If you are using a custom `accept` file from a separate folder, with the `ACCEPT` environment variable, you cannot use the `ACCEPT_CODE` mechanism.
+
+You can find the relevant `accept.json` for each of the Git integrations in [Adding custom allowlist for Docker installation](broken-reference).
 
 If you want to customize the `accept.json`, add this snippet to your custom `accept.json`
 

@@ -10,10 +10,10 @@ Regardless of how you use Snyk, ensure you have completed the steps in the [Quic
 
 In addition, if you are using Snyk Code or scanning container images, complete the following:
 
-* [Activate Snyk Code](../../scan-using-snyk/start-scanning-using-the-cli-web-ui-or-api/scan-code/activate-snyk-code-using-the-web-ui.md) to scan your application code.
+* [Activate Snyk Code](scan-code/activate-snyk-code-using-the-web-ui.md) to scan your application code.
 * [Set up integration with a supported container registry](../../getting-started/quickstart/set-up-an-integration.md) to scan container images.
 
-For general information about Snyk scans, see [Running scans](../../scan-using-snyk/working-with-snyk-in-your-environment/running-scans.md).&#x20;
+For general information about Snyk scans, see [Running scans](../../getting-started/running-scans/).&#x20;
 
 ## Overview of ways to scan your Projects
 
@@ -54,22 +54,21 @@ Each Snyk product has specific commands and options. Ensure you are using the co
 
 For more information, see the following pages:
 
-* [Use Snyk Open Source from the CLI](../../snyk-cli/scan-and-maintain-projects-using-the-cli/snyk-cli-for-open-source/)
+* [Use Snyk Open Source from the CLI](../../snyk-cli/scan-and-maintain-projects-using-the-cli/use-snyk-open-source-from-the-cli/)
 * [Use Snyk Code from the CLI](../../snyk-cli/scan-and-maintain-projects-using-the-cli/using-snyk-code-from-the-cli/)
-* [Use Snyk Container from the CLI](../../snyk-cli/scan-and-maintain-projects-using-the-cli/snyk-cli-for-snyk-container/)
-* [Snyk CLI for IaC](../../snyk-cli/scan-and-maintain-projects-using-the-cli/snyk-cli-for-iac/)
+* [Use Snyk Container from the CLI](../../snyk-cli/scan-and-maintain-projects-using-the-cli/use-snyk-container-from-the-cli/)
 
 ### Scan results
 
 After you finish running a Snyk CLI scan, the results are displayed in the terminal. The following pages explain the results for Snyk Open Source, Snyk Code, and Snyk Container scans:
 
-* [Review the Snyk Open Source CLI results](../../snyk-cli/scan-and-maintain-projects-using-the-cli/snyk-cli-for-open-source/review-the-snyk-open-source-cli-results.md)
+* [Review the Snyk Open Source CLI results](../../snyk-cli/scan-and-maintain-projects-using-the-cli/use-snyk-open-source-from-the-cli/review-the-snyk-open-source-cli-results.md)
 * [Working with the Snyk Code CLI results](../../snyk-cli/scan-and-maintain-projects-using-the-cli/using-snyk-code-from-the-cli/working-with-the-snyk-code-cli-results.md)
-* [Understand Snyk Container CLI results](../../snyk-cli/scan-and-maintain-projects-using-the-cli/snyk-cli-for-snyk-container/understanding-snyk-container-cli-results.md)
+* [Understand Snyk Container CLI results](../../snyk-cli/scan-and-maintain-projects-using-the-cli/use-snyk-container-from-the-cli/understanding-snyk-container-cli-results.md)
 
 ## Scan using the Web UI
 
-Using a Snyk integration, you can scan your Projects from the Web UI> Running PR Checks also scans your code. See [Configure PR Checks](../../scan-using-snyk/run-pr-checks/configure-pr-checks.md) to learn how to enable this functionality. See [Run an analysis with Visual Studio Code extension](../../integrate-with-snyk/ide-tools/visual-studio-code-extension/run-an-analysis-with-visual-studio-code-extension.md) for an example of scanning using an integration.. For more information, see [Use Snyk in your IDE](../../integrate-with-snyk/ide-tools/) and [Snyk CI/CD integrations](../../integrate-with-snyk/snyk-ci-cd-integrations/).
+Using a Snyk integration, you can scan your Projects from the Web UI by using the PR checks feature. Use the information from the [Configure PR Checks](../../scan-application-code/run-pr-checks/configure-pr-checks.md) page to enable this functionality. See [Run an analysis with Visual Studio Code extension](../../integrations/ide-tools/visual-studio-code-extension/run-an-analysis-with-visual-studio-code-extension.md) for an example. For more information, see [Use Snyk in your IDE](../../integrations/ide-tools/) and [Snyk CI/CD integrations](../../integrations/snyk-ci-cd-integrations/).
 
 ## Scan using the API
 

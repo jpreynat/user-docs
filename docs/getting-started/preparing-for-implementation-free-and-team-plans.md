@@ -1,7 +1,7 @@
 # Preparing for implementation: Free and Team plans
 
 {% hint style="info" %}
-See [Getting started with Snyk: Free and Team plans](getting-started-with-snyk-free-team-plan.md) before you read this guide.
+See [Getting started with Snyk: Free and Team plans](getting-started-with-snyk-free-and-team-plans.md) before you read this guide.
 {% endhint %}
 
 These pages explain a few planning steps to follow before you implement Snyk beyond your local Project.
@@ -22,7 +22,7 @@ As you prepare for your team to start adopting Snyk as part of a secure developm
 
 You will want to roll Snyk out in phases depending on how far you and your team have progressed with developer security: awareness, visibility, preventing issues, fixing the backlog, and optimizing.
 
-See the [Ways to integrate Snyk at your company](https://learn.dev.snyk.io/lesson/integrate-snyk-at-your-company/) course for more details.
+See the [Ways to integrate Snyk at your company](https://training.snyk.io/courses/ways-to-use-snyk) course in Snyk Training for more details.
 
 ## How to structure your Snyk account
 
@@ -44,7 +44,7 @@ The option to use single sign-on (SSO) via your existing identity provider to si
 
 ## How you will scan your applications
 
-Snyk Projects are the components that Snyk tests, along with the related configuration and metadata. Each target you want to scan (repository, container images, Dockerfiles, configuration files, source code) may include more than one Project. See [Snyk Projects](../snyk-admin/snyk-projects/) for details.
+Snyk Projects are the components that Snyk tests, along with the related configuration and metadata. Each target you want to scan (repository, container images, Dockerfiles, configuration files, source code) may include more than one Project. See [Snyk Projects](../snyk-admin/introduction-to-snyk-projects/) for details.
 
 There are different ways to scan applications in Snyk, including from a [Git repository integration](walkthrough-code-repository-projects/), using the [Snyk CLI](../snyk-cli/), or the [Snyk API](../snyk-api/).
 
@@ -72,15 +72,15 @@ Choose the settings under **Default Snyk test for pull requests**:
 * Pull request assignees for private repos
 * Auto-detect Dockerfiles
 
-See the [Source Code Manager Configurations](https://learn.dev.snyk.io/lesson/configure-snyk-scm/) course for details on how to match these integration settings with your security maturity phase.
+See the[ Source Code Manager Configurations](https://training.snyk.io/courses/source-code-manager-configurations?query=Source%20code) training course for details on how to match these integration settings with your security maturity phase.
 
-See also [Integrate with Snyk](../integrate-with-snyk/) for more details.
+See also [Integrate with Snyk](../integrations/) for more details.
 
 ### Define your default license policy
 
 As part of Team and Enterprise plans, Snyk can identify license compliance issues in your Open Source packages. The default license policy specifies the severity associated with the use of different licenses, along with an option to provide license instructions if Snyk finds these licenses in your Projects. You can customize the default license policy for your needs.
 
-See also [Snyk License Compliance Management](../scan-using-snyk/snyk-open-source/scan-open-source-libraries-and-licenses/snyk-license-compliance-management.md) for more details.
+See also [Snyk License Compliance Management](../scan-applications/start-scanning-using-the-cli-web-ui-or-api/scan-open-source-libraries-and-licenses/snyk-license-compliance-management.md) for more details.
 
 ### Enable Snyk Code
 
@@ -94,7 +94,7 @@ Navigate to **Settings > Snyk Code**. Select Enabled and Save changes.
 If you have imported Projects prior to enabling Snyk Code, you must re-import them.
 {% endhint %}
 
-See [Activate Snyk Code using the Web UI](../scan-using-snyk/start-scanning-using-the-cli-web-ui-or-api/scan-code/activate-snyk-code-using-the-web-ui.md) for more details.
+See [Activate Snyk Code using the Web UI](../scan-applications/start-scanning-using-the-cli-web-ui-or-api/scan-code/activate-snyk-code-using-the-web-ui.md) for more details.
 
 ### Configure notifications
 
@@ -132,7 +132,7 @@ Based on the nuances of the tech stack you are using, you will want to set your 
 
 Integrate your Organization with Jira to assist with logging tickets and addressing backlogged security issues.
 
-See also [Jira integration](../integrate-with-snyk/notification-and-ticketing-systems-integrations/jira-integration.md).
+See also [Jira integration](../integrations/notifications-ticketing-system-integrations/jira.md).
 
 ## Invite members
 

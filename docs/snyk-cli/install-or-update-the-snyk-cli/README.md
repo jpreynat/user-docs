@@ -4,11 +4,7 @@ You can install or update the [Snyk CLI](../) using the methods explained on thi
 
 After you install the Snyk CLI, you must [authenticate](../commands/auth.md). Then you can [get started](../getting-started-with-the-snyk-cli.md) testing and fixing your vulnerabilities, beginning with testing your installation.
 
-{% hint style="warning" %}
-Snyk recommends always keeping your CLI installation updated to the latest version. You can check which version of the Snyk CLI you have installed by running `snyk --version`.
-{% endhint %}
-
-For information about installing the CLI for an IDE, see the IDE documentation.
+**Note**: Snyk recommends always keeping your CLI installation updated to the latest version. You can check which version of the Snyk CLI you have installed by running `snyk --version`.
 
 ## Install with standalone executables
 
@@ -112,4 +108,17 @@ snyk/snyk:maven snyk monitor \
 --maven-aggregate-project
 ```
 
-\
+## Install as a part of a Snyk integration
+
+Snyk also offers many [integrations](../../integrations/) into developer tooling. These integrations install and manage the Snyk CLI for you. Integrations include the following:
+
+* [Snyk Jenkins plugin](https://github.com/jenkinsci/snyk-security-scanner-plugin)
+* [CircleCI Orb](https://github.com/snyk/snyk-orb)
+* [Azure Pipelines Task](https://github.com/snyk/snyk-azure-pipelines-task)
+* [GitHub Actions](https://github.com/snyk/actions)
+* [IntelliJ IDE Plugin](https://github.com/snyk/snyk-intellij-plugin)
+* [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner)
+* [Eclipse IDE Extension](https://github.com/snyk/snyk-eclipse-plugin)
+* [Maven plugin](https://github.com/snyk/snyk-maven-plugin)
+
+See the [integrations](../../integrations/) docs for detailed information about the integrations and how to install.\

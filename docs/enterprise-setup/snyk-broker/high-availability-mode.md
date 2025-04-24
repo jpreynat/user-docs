@@ -16,6 +16,7 @@ High availability mode is disabled by default. To activate it, set the following
 
 ```
 BROKER_HA_MODE_ENABLED=true
+BROKER_DISPATCHER_BASE_URL=https://api.snyk.io
 ```
 
 **Helm chart deployments** can set these values by enabling the mode using set arguments. Helm chart version 1.7.0 or later is required.
@@ -28,13 +29,7 @@ Review the chart values file to adjust additional configurations such as increas
 
 ## **Important notes about settings**
 
-The Dispatcher Base Url should be specific to your region if you are using a regional Snyk platform, for example, api.eu.snyk.io. See [Regional hosting and data residency](../../more-info/regional-hosting-and-data-residency.md) for details.
-
-If you are using app.snyk.io, the following is not required. It is applicable only to regional Snyk platforms.
-
-```
-BROKER_DISPATCHER_BASE_URL=https://api.snyk.io
-```
+The Dispatcher Base Url should be specific to your region if you are using a regional Snyk platform, for example, api.eu.snyk.io). See [Regional Hosting](https://docs.snyk.io/more-info/data-residency-at-snyk) for details
 
 Outbound connection to api.snyk.io or the corresponding api hostname must be allowed. Otherwise, preflight checks will indicate failure upon Broker client startup.
 

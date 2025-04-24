@@ -2,6 +2,8 @@
 
 Installing the [Broker Container Registry Agent using Docker](./) requires the parameter `CR_AGENT_URL`, but it is not required to install using Helm. The environment variables are defined for [installing with Docker](https://docs.snyk.io/snyk-admin/snyk-broker/snyk-broker-container-registry-agent#configuring-and-running-the-broker-client-for-container-registry-agent) and apply also to installing with Helm.
 
+You must include an `accept.json` file for this deployment. Copy the new accept.json to the /snyk-broker folder
+
 ```
 helm install snyk-broker-chart snyk-broker/snyk-broker \
              --set scmType=container-registry-agent \
@@ -10,6 +12,7 @@ helm install snyk-broker-chart snyk-broker/snyk-broker \
              --set crBase=<ENTER_CR_BASE_URL> \
              --set crUsername=<ENTER_CR_URSERNAME> \
              --set crPassword=<ENTER_CR_PASSWORD> \
+             --set acceptJsonFile=accept.json \
              -n snyk-broker --create-namespace
 ```
 
@@ -42,6 +45,7 @@ helm install snyk-broker-chart snyk-broker/snyk-broker \
              --set crRoleArn=<ENTER_CR_ROLE_ARN> \
              --set crRegion=<ENTER_CR_REGION> \
              --set crExternalId=<ENTER_CR_EXTERNAL_ID> \
+             --set acceptJsonFile=accept.json \
              -n snyk-broker --create-namespace
 ```
 
@@ -56,5 +60,6 @@ helm install snyk-broker-chart snyk-broker/snyk-broker \
              --set crType=digitalocean-cr \
              --set crBase=<ENTER_CR_BASE_URL> \
              --set crToken=<ENTER_CR_TOKEN> \
+             --set acceptJsonFile=accept.json \
              -n snyk-broker --create-namespace
 ```

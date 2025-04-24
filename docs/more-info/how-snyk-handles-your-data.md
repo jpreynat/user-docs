@@ -32,11 +32,13 @@ Snyk provides a wide range of development tools and integration points, requirin
 
 ## Product-specific data types
 
-Snyk knows how important it is for you to protect your data. Snyk products only access and store the information needed to provide you with Snyk services and to ensure accurate analysis as described for each Snyk product: [Snyk Open Source](how-snyk-handles-your-data.md#snyk-open-source), [Snyk Code](how-snyk-handles-your-data.md#snyk-code), [Snyk Container](how-snyk-handles-your-data.md#snyk-container), and [Snyk IaC](how-snyk-handles-your-data.md#snyk-iac).
+Snyk knows how important it is for you to protect your data. Snyk products only access and store the information needed to provide you with Snyk services and to ensure accurate analysis.
 
+{% tabs %}
+{% tab title="Snyk Open Source" %}
 ### **Snyk Open Source**
 
-<figure><img src="../.gitbook/assets/SnykOSS.svg" alt="Snyk Open Source logo"><figcaption><p>Snyk Open Source</p></figcaption></figure>
+![Snyk Open Source](../.gitbook/assets/SnykOSS.svg)
 
 * Snyk accesses manifest files, lock files, and related configuration files in order to identify your open-source dependencies.
 * By default, Snyk does not access your source code with this exception: for CLI scans using the `--unmanaged` option, Snyk accesses your source code files to convert them to file signatures (hashes) and store the file signatures and file names.
@@ -46,66 +48,62 @@ Snyk knows how important it is for you to protect your data. Snyk products only 
 * Snyk accesses and stores repository-specific information.
 * Snyk accesses and stores Git provider push and pull-specific information. Examples: contributor name, filenames, timestamps.
 
-**Optional Snyk Open Source add-ons (opt-in)**
+**Optional ADD-ONS (opt-in)**
 
 Your account is subject to contract terms which might restrict your ability to enable these features. By enabling these features, you agree on behalf of your company to changes to your contract terms to allow these features, and you will be responsible for the use of these features based on your own circumstances.
 
-* For the Go Modules full source code analysis feature, Snyk will access and store the contents of your Git repository to facilitate the building of an accurate dependency graph. After the Snyk analysis is complete, your code is deleted from the Snyk system.
-* For the Reachable Vulnerabilities feature, Snyk will access and store the contents of your git repository to facilitate the building of a call graph. When the analysis completes, your code is deleted from the Snyk system. Only the call graph and function names are maintained.
+* For Go Modules full source code analysis feature - Snyk will access and store the contents of your git repository to facilitate the building of an accurate dependency graph. After the Snyk analysis is complete, your code is deleted from the Snyk system.
+* For the Reachable Vulnerabilities feature - Snyk will access and store the contents of your git repository to facilitate the building of a call graph. When the analysis completes, your code is deleted from the Snyk system. Only the call graph and function names are maintained.
+{% endtab %}
 
+{% tab title="Snyk Code" %}
 ### **Snyk Code**
 
-<figure><img src="../.gitbook/assets/SnykCode.svg" alt="Snyk Code logo"><figcaption><p>Snyk Code</p></figcaption></figure>
+![Snyk Code](../.gitbook/assets/SnykCode.svg)
 
-* Snyk accesses your repository code for a one-time analysis and [caches the source code](how-snyk-handles-your-data.md#how-snyk-processes-this-data) according to the Cloud provider's storage minimum policy. After this period, only the location (file path, line, and column) of the issues found; the issue id, and explanations are maintained. Your code is removed and is not stored in the Snyk network or logs.
+* Snyk accesses your repository code for a one-time analysis, caching it for up to 12 hours. After this period, only the location (file path, line, and column) of the issues found, the issue id, and explanations are maintained. Your code is removed and is not stored in the Snyk network or logs.
 * Results are stored in a database and used for analytic and monitoring purposes by Snyk.
+* When you are viewing Snyk Code issue details on the Snyk Web UI, note that the associated files are loaded and cached for up to 12 hours.
 * Snyk Code does not use any customer code (1) for engine training purposes or (2) to extract examples to show possible fixes.
 * The AI model for Snyk Code Fix Suggestions is trained on public repositories with permissive licenses, where any data from repositories with changing licenses are immediately removed. Static analysis, automated assessment, and partial human labeling are used during the data collection.
 * The scan results do not contain original source code but rather pointers to positions (for example, files, line, and column numbers), plus identification meta-information so that results are displayed using the correct source code version.
 * Snyk stores repository-specific information. Examples: Name of the Git repository and file names.
 * The server infrastructure ensures separation between customers by using authentication and authorization. Snyk Code uses software controls to ensure customer data segregation. All communication is encrypted using high-grade industry-standard protocols.
+{% endtab %}
 
+{% tab title="Snyk Container" %}
 ### **Snyk Container**
 
-<figure><img src="../.gitbook/assets/image (201) (1).png" alt="Snyk Container logo"><figcaption><p>Snyk Container</p></figcaption></figure>
+![Snyk Container](<../.gitbook/assets/image (201) (1).png>)
 
-* Snyk accesses and stores package versions, executable hashes and versions, operating system, container image metadata (for example, rootfs hashes, history), and image ID.
-* Snyk accesses and stores information pertaining to the parent image: name, version, tag.
+* Snyk accesses and stores package versions, executable hashes and versions, operating system, container image metadata (for example, rootfs hashes, history), image ID.
+* Snyk accesses and stores information pertaining to the parent image - name, version, tag.
 * Snyk accesses and stores RUN instructions from Dockerfile.
-* Kubernetes configurations: Snyk accesses workload security settings (for example, ‘run as root’). This is only accessed if you use Snyk’s Kubernetes integration.
-* Container registry integrations: Snyk accesses and then stores a short-term copy of the container image (unless a Broker is used). This copy is removed from the Snyk network after analysis.
+* Kubernetes configurations - Snyk accesses workload security settings (for example, ‘run as root’). This is only accessed if you use Snyk’s Kubernetes integration.
+* Container registry integrations - Snyk accesses and then stores a short-term copy of the container image (unless a broker is used). This copy is removed from the Snyk network after analysis.
+{% endtab %}
 
-### **Snyk IaC**
+{% tab title="Snyk IaC" %}
+### **Snyk Infrastructure as Code**
 
-<figure><img src="../.gitbook/assets/SnykIaC.svg" alt="Snyk IaC logo"><figcaption><p>Snyk Infrastructure as Code</p></figcaption></figure>
+![Snyk Infrastructure as Code](../.gitbook/assets/SnykIaC.svg)
 
-#### Current IaC
-
-* CLI tests are performed locally. When results are shared with the Snyk platform using the `--report` option, resource configurations are also included.
+* CLI tests are performed locally. When results are shared with the Snyk platform via the `--report` option, resource configurations are also included.
 * SCM tests require access to your infrastructure as code files. Snyk stores them for the duration of the analysis and subsequently deletes them from the Snyk system. Snyk retains parsed resource configurations to provide context for issues and resources.
 * Terraform Cloud and Terraform Enterprise tests analyze plan files. Snyk removes secrets and sensitive values and retains resource configurations to provide context for issues and resources.
-* For drift detection using `snyk iac describe`, Snyk relies on the principle of least privilege and requires only read-only access to [AWS](../scan-using-snyk/scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-aws-provider.md#least-privileged-policy), [Azure](../scan-using-snyk/scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-azure-provider.md#least-privileged-policy), [Google](../scan-using-snyk/scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-google-provider.md#least-privileged-policy), or [GitHub](../scan-using-snyk/scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-github-provider.md#least-privileged-policy). Provider credentials are not sent to or stored by Snyk.
+* For drift detection via `snyk iac describe`, Snyk relies on the principle of least privilege and requires only read-only access to [AWS](../scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-aws-provider.md#least-privileged-policy), [Azure](../scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-azure-provider.md#least-privileged-policy), [Google](../scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-google-provider.md#least-privileged-policy), or [GitHub](../scan-infrastructure/iac+-code-to-cloud-capabilities/detect-drift-and-manually-created-resources/configure-cloud-providers/configure-github-provider.md#least-privileged-policy). Provider credentials are not sent to or stored by Snyk.
 * Snyk relies on local read-only Terraform State file access and extracts and sends relevant resource configuration data to the platform.
 
-#### IaC+
+### IaC+
 
 * Snyk Cloud scans cloud platform APIs to gather information on configured infrastructure deployed in AWS Accounts and Google Cloud Subscriptions.
-* To perform scans, Snyk relies on the principle of least privilege, leveraging different authentication mechanisms that are supported by each Cloud platform.
+* To perform scans, Snyk relies on the principle of least privilege, leveraging different authentication mechanisms which are supported by each Cloud platform.
   * For Amazon Web Services (AWS), a read-only AWS IAM role must be provisioned in your AWS Account(s) to provide secure access to required AWS APIs.
   * For Google Cloud, a read-only Google Cloud Service Account must be provisioned to enable secure access to required Google Cloud APIs.
-* During scans, Snyk gathers and stores a resource configuration state to perform analysis, and stores the results of that analysis, including the details of misconfigurations that result in issues.
+* During scans, Snyk gathers and stores a resource configuration state to perform analysis, and stores the results of that analysis, including the details of misconfigurations which result in issues.
 * Snyk Cloud retains resource configuration states found in scans to provide context for Issues and resources but does not store secrets or sensitive values.
-
-### Snyk AppRisk
-
-<figure><img src="../.gitbook/assets/AppRisk_Color_64px.png" alt="Snyk App Risk logo"><figcaption><p>Snyk AppRisk</p></figcaption></figure>
-
-* Snyk AppRisk provides visibility into data at the Snyk Group level and therefore covers the scope of all Snyk Organizations within a Snyk Group.
-* From Snyk Targets and Projects within associated Snyk organizations, Snyk AppRisk accesses and stores asset metadata to generate code repository assets, package (first-party) assets, and container image assets. Asset metadata includes the Git remote URL, languages represented in repositories, and commit history metadata (not the underlying source code).
-* From SCM integrations configured using the Snyk AppRisk Integration Hub, Snyk AppRisk accesses and stores the following data:
-  * Commit history metadata from the last 50 commits for repositories monitored, including profile information on the code committer, such as GitHub user IDs, display name, or email.
-  * Metadata on the languages (for example, Python, HTML) used for a given code repository.
-  * Repository “topics”, which are represented as asset tags.
+{% endtab %}
+{% endtabs %}
 
 ## Snyk integrations: Git repository cloning
 
@@ -135,16 +133,14 @@ When Git repository cloning is enabled, Snyk will ingest, through configured SCM
 
 Snyk uses cloud products from Amazon Web Services (AWS) and Google Cloud Platform (GCP) to process and store the data in a cache.
 
-Data is cached according to the cloud provider's storage minimum retention policy:
-
-* For AWS tenants - EU/AU/Private Tenant: [S3 policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html)
-* GCP tenants - US (Default): [Google Cloud Storage Policy](https://cloud.google.com/storage/docs/lifecycle)
+Data is cached for 24 hours “per commit”, meaning that for every commit pushed to a repository that Snyk is tracking, the contents of that commit will be held in a cache for up to 24 hours. Multiple commits within a single 24-hour period will result in multiple caches with their own 24-hour lifecycle. At the end of each 24-hour lifecycle, the cache is automatically deleted according to cloud provider policies.
 
 ### Safeguards Snyk puts in place to ensure data is secure
 
 * Snyk will perform a clone only when an SCM integration flow requires it, for example, PR check, import, and test.
 * Communication between the cloning service and cache is encrypted with TLS 1.2.
 * Cloned assets are deleted from the file system immediately after populating the cache.
+* The cache for a clone is deleted after a maximum of 24 hours.
 * All data is handled by Snyk in accordance with the SOC 2 standard. For more details, see [Snyk certifications](how-snyk-handles-your-data.md#snyk-certifications).
 * Your data is analyzed only for the purposes of improving code security and code quality and in accordance with your Data Processing Addendum.
 
@@ -154,7 +150,7 @@ Repositories are cloned using HTTPS. SSH-based clones are currently unavailable.
 
 ### Flows used in Git repository cloning
 
-[PR checks](../scan-using-snyk/run-pr-checks/), [import](../getting-started/quickstart/import-a-project.md), and r[ecurring tests](../scan-using-snyk/working-with-snyk-in-your-environment/running-scans.md) will all make use of Git repository cloning for all Projects imported using an SCM integration.
+[PR checks](../scan-application-code/run-pr-checks/), [import](../getting-started/quickstart/import-a-project.md), and r[ecurring tests](../getting-started/running-scans/) will all make use of Git repository cloning for all Projects imported using an SCM integration.
 
 ### Snyk Broker interactions
 

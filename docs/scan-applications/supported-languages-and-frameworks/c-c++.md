@@ -2,16 +2,17 @@
 
 ## Supported frameworks and package managers
 
+{% hint style="warning" %}
+You might encounter false positives or false negatives for partially supported frameworks and package managers.
+{% endhint %}
+
 ### Code analysis
 
-Snyk Code supports the following:
+Snyk Code supports the following frameworks:
 
-* Operating systems
-  * Linux
-  * Windows (limited)
-* Embedded systems: Linux
-* GUI Framework&#x20;
-* Libraries: POSIX, C++ Standard Library, Boost, QT
+* C++
+* POSIX
+* [Win32](https://win32-framework.sourceforge.net/)
 
 ### Open source and licensing
 
@@ -373,4 +374,4 @@ Under **Additional Parameters** in the IDE settings, enter the **--unmanaged** o
 
 ## Help
 
-:link: See [best practices](../../scan-using-snyk/supported-languages-and-frameworks/c-c++/best-practices-for-c-c++.md) and [troubleshooting](../../scan-using-snyk/supported-languages-and-frameworks/c-c++/help-c-c++.md).
+:link: See [best practices](working-with-snyk-in-your-environment/best-practices-for-c-c++.md) and [troubleshooting](c-c++/help-c-c++.md).

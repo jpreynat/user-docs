@@ -3,9 +3,7 @@
 ## Supported frameworks and package managers
 
 {% hint style="warning" %}
-You might encounter false positives or false negatives for partially supported frameworks and package managers.\
-\
-Objective-C is supported only by Snyk Open Source.
+You might encounter false positives or false negatives for partially supported frameworks and package managers.
 {% endhint %}
 
 ### Code analysis for Swift
@@ -60,15 +58,15 @@ After Snyk has built the tree, Snyk uses the vulnerability database to find vuln
 
 ### Snyk Web UI (Git repository integration)
 
-| Swift Package Manager and Git                                                              | CocoaPods and Git                                                            |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| At the moment, it is not possible to scan Swift Package Manager Projects using Git import. | To test your Projects, Snyk analyzes the `Podfile` and `Podfile.lock` files. |
+| Swift Package Manager and Git                                                              | CocoaPods and Git                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| At the moment, it is not possible to scan Swift Package Manager Projects using Git import. | <p>To test your Projects, Snyk analyzes the <code>Podfile</code> and <code>Podfile.lock</code> files.<br><br>You can import projects managed by CocoaPods from any of the Snyk supported Git repositories.</p> |
 
 ### Snyk integrations&#x20;
 
-:link: For integrated development environments, see [Use Snyk in your IDE](../../integrate-with-snyk/ide-tools/).
+:link: For integrated development environments, see [Use Snyk in your IDE](../../integrations/ide-tools/).
 
-:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrate-with-snyk/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
+:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrations/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
 
 ## Troubleshooting
 

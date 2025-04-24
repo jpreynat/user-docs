@@ -78,9 +78,7 @@ Use the`addSbtPlugin()` command as given above.
 
 For more details on installing `sbt-dependency-graph` for use with the Snyk CLI, see the article [How to install the SBT dependency graph plugin to test Scala projects with Snyk CLI.](https://support.snyk.io/hc/en-us/articles/360004167317)
 
-### Snyk Web UI (Git repository integration)
-
-Scala `sbt` Projects can be imported from any of the Git repositories that Snyk [supports](../../integrate-with-snyk/git-repositories-scms-integrations-with-snyk/).
+Scala `sbt` Projects can be imported from any of the Git repositories that Snyk [supports](../../integrations/git-repository-scm-integrations/).
 
 To test your Scala Projects using `sbt` as a package manager, Snyk analyzes your `build.sbt` file.\
 To ensure that this works properly, you must have this file in your repository before importing your projects.
@@ -102,11 +100,15 @@ You can’t declare versions of dependencies in a file that is not accessible to
 For more details, see [Scanning a remote repository using the Snyk Web UI.](https://docs.snyk.io/snyk-cli/test-for-vulnerabilities/differences-in-vulnerability-counts-across-environments#scanning-a-remote-repository-using-the-web-ui)
 {% endhint %}
 
+### Snyk Web UI (Git repository integration)
+
+Snyk for Scala is not available at the moment for Snyk Web UI. You can use it with the [CLI,](scala.md#snyk-cli) or with the available [Snyk integrations](scala.md#snyk-integrations).
+
 ### Snyk integrations&#x20;
 
-:link: For integrated development environments, see [Use Snyk in your IDE](../../integrate-with-snyk/ide-tools/).
+:link: For integrated development environments, see [Use Snyk in your IDE](../../integrations/ide-tools/).
 
-:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrate-with-snyk/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
+:link: If you prefer continuous integration/continuous delivery workflows, you can scan with Snyk based on the integration with your automation software (see [Snyk CI/CD](../../integrations/snyk-ci-cd-integrations/) and [Snyk API](../../snyk-api/)).
 
 ## Troubleshooting
 

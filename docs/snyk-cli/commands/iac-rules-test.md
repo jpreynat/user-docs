@@ -2,7 +2,7 @@
 
 ## Usage
 
-**Feature availability:** This feature is in Early Access.
+**Feature availability:** This feature is in beta.
 
 `snyk iac rules test [<OPTIONS>]`
 
